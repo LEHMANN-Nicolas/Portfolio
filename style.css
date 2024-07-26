@@ -1,129 +1,266 @@
-
 body {
-	background-image: url("images/main_background.png");
-	background-size: cover;
+    background-size: cover;
 }
+
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    background: #3E3E39;
+    z-index: 1; /* Ensure background is behind everything else */
+}
+
+.background li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 17s linear infinite;
+}
+
+.background li:nth-child(0) {
+    left: 33%;
+    width: 185px;
+    height: 185px;
+    bottom: -185px;
+    animation-delay: 1s;
+}
+.background li:nth-child(1) {
+    left: 37%;
+    width: 166px;
+    height: 166px;
+    bottom: -166px;
+    animation-delay: 4s;
+}
+.background li:nth-child(2) {
+    left: 78%;
+    width: 190px;
+    height: 190px;
+    bottom: -190px;
+    animation-delay: 6s;
+}
+.background li:nth-child(3) {
+    left: 73%;
+    width: 109px;
+    height: 109px;
+    bottom: -109px;
+    animation-delay: 11s;
+}
+.background li:nth-child(4) {
+    left: 71%;
+    width: 101px;
+    height: 101px;
+    bottom: -101px;
+    animation-delay: 5s;
+}
+.background li:nth-child(5) {
+    left: 4%;
+    width: 141px;
+    height: 141px;
+    bottom: -141px;
+    animation-delay: 24s;
+}
+.background li:nth-child(6) {
+    left: 56%;
+    width: 180px;
+    height: 180px;
+    bottom: -180px;
+    animation-delay: 11s;
+}
+.background li:nth-child(7) {
+    left: 47%;
+    width: 132px;
+    height: 132px;
+    bottom: -132px;
+    animation-delay: 9s;
+}
+.background li:nth-child(8) {
+    left: 56%;
+    width: 133px;
+    height: 133px;
+    bottom: -133px;
+    animation-delay: 15s;
+}
+.background li:nth-child(9) {
+    left: 58%;
+    width: 105px;
+    height: 105px;
+    bottom: -105px;
+    animation-delay: 34s;
+}
+
 h1 {
-	color: #726969;
+    color: #726969;
+    z-index: 2; /* Set higher z-index for text elements */
+    position: relative; /* Ensure positioning context */
 }
+
 h2 {
-	color: #726969;
-	font-style:italic;
+    color: #726969;
+    font-style: italic;
+    z-index: 2; /* Set higher z-index for text elements */
+    position: relative; /* Ensure positioning context */
 }
+
 .menu {
-	text-align: center;
-	position: sticky;
-	top: 20px;
+    text-align: center;
+    position: sticky;
+    top: 20px;
+    z-index: 3; /* Set higher z-index for menu */
 }
+
 .center {
-	text-align: center;
+    text-align: center;
+    z-index: 2; /* Set higher z-index for center elements */
+    position: relative; /* Ensure positioning context */
 }
+
 p {
-	color: white;
+    color: white;
+    z-index: 2; /* Set higher z-index for paragraph elements */
+    position: relative; /* Ensure positioning context */
 }
+
 /* Menu CSS */
 /* Dropdown Button */
 .dropbtn {
-	background-color:#333333;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	border-radius: 10px;
-	min-width: 170px;
-	border-right: 1px solid #CCCCCC;
-	border-left: 1px solid #CCCCCC;
+    background-color:#333333;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    min-width: 170px;
+    border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    z-index: 2; /* Set higher z-index for dropdown button */
+    position: relative; /* Ensure positioning context */
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-	position: relative;
-	display: inline-block;
+    position: relative;
+    display: inline-block;
+    z-index: 2; /* Set higher z-index for dropdown */
 }
   
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 100%;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-	border-radius: 10px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3; /* Ensure dropdown content is above other elements */
+    border-radius: 10px;
 }
   
 /* Links inside the dropdown */
 .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	font-family: Arial, Helvetica, sans-serif;
-	transition: all 1s ease-out;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.5s ease-out;
 }
   
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover, .dropdown-content a:focus {
-	background-color: #adadad;
-	border-radius: 10px;
+    background-color: #adadad;
+    border-radius: 10px;
 }
   
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-	display: block;
-	transition: all .4s ease-in-out;
+    display: block;
+    transition: all .4s ease-in-out;
 }
   
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-	background-color: #414141;
+    background-color: #414141;
 }
-.solo-link{
-	background-color:#333333;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border-radius: 10px;
-	width: auto;
-	border-right: 1px solid #CCCCCC;
-	border-left: 1px solid #CCCCCC;
-	text-decoration: none;
-	font-family: Arial, Helvetica, sans-serif;
-	min-width: 170px;
+
+.solo-link {
+    background-color: #333333;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: auto;
+    border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 170px;
+    z-index: 2; /* Set higher z-index for solo links */
+    position: relative; /* Ensure positioning context */
 }
-.solo-link:hover{
-	background-color: #414141;
+
+.solo-link:hover {
+    background-color: #414141;
 }
+
 #delay {
-	font-size: 14px;
-	transition-property: font-size;
-	transition-duration: 4s;
-	transition-delay: 2s;
+    font-size: 14px;
+    transition-property: font-size;
+    transition-duration: 4s;
+    transition-delay: 2s;
+    z-index: 2; /* Set higher z-index for delay element */
+    position: relative; /* Ensure positioning context */
 }
   
 #delay:hover {
-	font-size: 36px;
+    font-size: 36px;
 }
+
 .profil {
-	border-radius: 4px;
-	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2; /* Set higher z-index for profil element */
+    position: relative; /* Ensure positioning context */
 }
+
 .title {
-	color: lightgrey;
-	font-family: Arial, Helvetica, sans-serif;
-	margin-left: 15px;
+    color: lightgrey;
+    font-family: "Josefin Sans", sans-serif;
+    margin-left: 15px;
+    z-index: 2; /* Set higher z-index for title element */
+    position: relative; /* Ensure positioning context */
 }
+
 body::-webkit-scrollbar {
-	width: 12px; /* width of the entire scrollbar */
+    width: 12px; /* width of the entire scrollbar */
 }
+
 body::-webkit-scrollbar-track {
-	background: rgb(70, 69, 69); /* color of the tracking area */
+    background: rgb(70, 69, 69); /* color of the tracking area */
 }
-  
+
 body::-webkit-scrollbar-thumb {
-	background-color: grey; /* color of the scroll thumb */
-	border-radius: 20px; /* roundness of the scroll thumb */
-	border: 2px solid lightgray; /* creates padding around scroll thumb */
+    background-color: grey; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 2px solid lightgray; /* creates padding around scroll thumb */
 }
