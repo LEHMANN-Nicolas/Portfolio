@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Portfolio - Contact</title>
+    <link href="style_contact.css" rel="stylesheet">
+    <script src="../../style.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://kit.fontawesome.com/8b9f753206.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="title fade-in-down">LEHMANN Nicolas</h1>
+    <div class="menu fade-in-down">
+        <a href="../../index.html" class="solo-link"><i class="fas fa-home"
+                style="font-size:15px"></i>&nbsp;&nbsp;Acceuil</a>
+        <a href="../CV/cv.html" class="solo-link"><i class="fa-solid fa-file"
+                style="font-size:15px"></i>&nbsp;&nbsp;Mon CV</a>
+        <a href="../Projets_Personnels/projets.html" class="solo-link"><i class="fa-solid fa-laptop-code"
+                style="font-size:15px"></i>&nbsp;&nbsp;Mes Projets Personnels</a>
+        <a href="../Parcours/parcours.html" class="solo-link"><i class="fa-solid fa-timeline"
+                style="font-size:15px"></i>&nbsp;&nbsp;Mon Parcours Professionnel</a>
+        <a href="../Contact/contact.html" class="solo-link"><i class="fa-solid fa-envelope"
+                style="font-size:15px"></i>&nbsp;&nbsp;Contact</a>
+    </div><br>
+    <div class="container fade-in-down">
+    <h1>Formulaire de Contact</h1>
+    <div class="section">
+            <div class="project-item">
+                <p>Vous avez une question, une opportunité ou un projet à me proposer ?<br>N'hésitez pas à me contacter via ce formulaire ou par l'adresse mail suivante:</p></p><p class="alternate"><i class="fa-solid fa-envelope"></i><b>contact@nicolas-lehmann.com</b></p>Je vous répondrai dès que possible dans les plus brefs délais.</p>
+            </div>
+        </div>
+    <div class="form-center">
+        <form method="POST" class="form" id="contact-form">
+            <input type="hidden" name="access_key" value="a26847f3-12d3-4e71-9562-29490f4a1c5c">
+            <input type="hidden" name="subject" value="New Mail from Portfolio">
+            <div class="name-container">
+                <div class="textbox">
+                    <label for="name">Prénom</label>
+                    <input type="text" id="name" name="name" required placeholder="Lucas" />
+                </div>
+                <div class="textbox">
+                    <label for="surname">Nom</label>
+                    <input type="text" id="surname" name="surname" required placeholder="Dupont" />
+                </div>
+            </div>
+            <div class="textbox_email">
+                <label for="name">Email</label>
+                <input type="email" id="email" name="email" required placeholder="yourname@example.com" />
+            </div>
+            <div class="textbox_title">
+                <label for="name">Titre</label>
+                <input type="text" id="title" name="title" required placeholder="De quoi s'agit-il ?" />
+            </div>
+            <div class="textbox_message">
+                <label for="name">Message</label>
+                <textarea id="message" name="message" rows="6" required
+                    placeholder="Écrivez votre message ici"></textarea>
+            </div>
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            <br>
+            <div class="submit">
+                <button type="submit">Envoyer</button>
+                <div id="result"></div>
+            </div>
+            
+            
+        </form>
+    </div></div>
+
+
+    <ul class="background"> <!--The pieces that makes the animated background-->
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+<footer>
+    <p>© 2025 LEHMANN Nicolas. Tous droits reservés.</p>
+    <div class="social-links">
+        <a href="https://github.com/LEHMANN-Nicolas" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nicolas-lehmann-40739b203/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</footer>
+
+<script> //Code for the system that takes the data from the form and sends it to the mailbox
+    const form = document.getElementById('contact-form');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        result.innerHTML = "Attendez un instant..."
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.innerHTML = "Le message a bien été envoyé";
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+                form.reset();
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 3000);
+            });
+    });
+</script>
+
+</html>
